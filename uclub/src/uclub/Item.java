@@ -21,7 +21,7 @@ public class Item
         this.name = name;
     }
     
-    public void display() //it do
+    public void display()
     {        
         NumberFormat dollars = NumberFormat.getCurrencyInstance();
         System.out.printf("%-5s%-6s%-9s%-8s\n", id, quantity, dollars.format(price), name);
