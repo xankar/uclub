@@ -1,0 +1,15 @@
+furn,1,20,130,Bed
+furn,2,21,131,Desk
+furn,3,22,132,Nightstand
+furn,4,23,133,Lamp
+furn,4,23,133,Lamp
+kitch,5,30,140,Knife
+kitch,6,31,141,CutBoard
+kitch,7,32,142,Sink
+kitch,8,33,143,Freezer
+kitch,8,33,143,Freezer
+outd,9,40,150,Chair
+outd,10,41,151,Patio
+outd,11,42,152,Umbrella
+outd,12,43,153,Pool
+outd,12,43,153,Pool
