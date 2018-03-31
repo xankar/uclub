@@ -27,6 +27,12 @@ public class Item
         System.out.printf("%-5s%-6s%-9s%-8s\n", id, quantity, dollars.format(price), name);
     }
     
+    // display function for outputting the cart contents in a specific format
+    public void displayCart()
+    {
+        System.out.printf("%d" + " x " + "%-6s" + "       $" + "%-12s\n", quantity, name, price);
+    }
+    
     // getters
     public int getId(){return id;}
 

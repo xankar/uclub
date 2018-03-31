@@ -36,7 +36,7 @@ public class itemManage
         int kitchCounter = 0;
         int outdCounter = 0;
         
-        File file = new File("C:\\Users\\xanke\\Desktop\\oop_projects\\uclub\\src\\uclub\\file.txt");
+        File file = new File("C:\\Users\\xanke\\Documents\\GitHub\\uclub\\uclub\\uclub\\src\\uclub\\file.txt");
         Scanner inventory = new Scanner(file);
         String line;
         
@@ -105,7 +105,7 @@ public class itemManage
             
             fullCatalog[i] = furnitureItems[i];
         }
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 5; i++) 
         {
             int id = Integer.parseInt(kitchen[0][i]);
             int quantity = Integer.parseInt(kitchen[1][i]);
@@ -140,7 +140,7 @@ public class itemManage
     
     public void displayCategory()
     {
-        int menuSelect = 0;
+        int menuSelect;
         
         System.out.println("\n--------------------------------");
         System.out.println("Please select a category: ");
@@ -155,6 +155,7 @@ public class itemManage
         System.out.println("--------------------------------");
         System.out.print("Your Selection: ");
         menuSelect = reader.nextInt();
+        reader.nextLine();
         
         if (menuSelect == 1)
         {
@@ -185,7 +186,7 @@ public class itemManage
             {
                 outdoorItems[i].display();
             }
-            initiateCart();
+            initiateCart(outdoorItems);
         }
         if (menuSelect == 0)
         {
@@ -199,7 +200,7 @@ public class itemManage
     }
     
     // function that will subtract from the available inventory
-    private void initiateCart()
+    private void initiateCart(Item[] category)
     {
         String inputIDs;
         String inputAmnts;
@@ -210,41 +211,68 @@ public class itemManage
         // get input
         do{
             if (arrID.size() > arrQ.size()){System.out.println("Not enough respective Quantity values.");}
-            if (arrID.size() < arrQ.size()){System.out.println("Not enough ID values to match Quantity values.");}
-            
-            System.out.print("Enter IDs (seperated by commas): ");
-            inputIDs = reader.nextLine();        
-            System.out.print("Enter Respective Quantities (seperated by commas): ");
-            inputAmnts = reader.nextLine();
-            
-            arrID = new ArrayList<>(Arrays.asList(inputIDs.split(",")));
-            arrQ = new ArrayList<>(Arrays.asList(inputAmnts.split(",")));
-            
+            else if (arrID.size() < arrQ.size()){System.out.println("Not enough ID values to match Quantity values.");}
+            else
+            {                            
+                System.out.print("Enter IDs (seperated by commas): ");
+                inputIDs = reader.nextLine();
+                //reader.nextLine();
+                System.out.print("Enter Respective Quantities (seperated by commas): ");
+                inputAmnts = reader.nextLine();
+                //reader.nextLine();
+
+                arrID = new ArrayList<>(Arrays.asList(inputIDs.split(",")));
+                arrQ = new ArrayList<>(Arrays.asList(inputAmnts.split(",")));
+            }            
         }while (arrID.size() != arrQ.size());
         
         // once all IDs for the current category have been establish, pass them into the cart
-        cart(outdoorItems, arrID);
+        displayCart(category, arrID, arrQ);
         
-        int i = 0;
-        int j = 0;
-        ArrayList<Double> price = new ArrayList<>();
-        
-        while (i < arrID.size())
-        {
-            if (Integer.parseInt(arrID.get(i)) == fullCatalog[j].getId())
-            {
-                price.set(i, fullCatalog[j].getPrice());
-                i = i + 1;
-            }            
-            else {j = j + 1;}            
-        }
+        // I don't think I'll need this. I'll just call a function to handle it from within displayCart() or something
+//        int i = 0;
+//        int j = 0;
+//        ArrayList<Double> price = new ArrayList<>();
+//        
+//        while (i < arrID.size())
+//        {
+//            if (Integer.parseInt(arrID.get(i)) == fullCatalog[j].getId())
+//            {
+//                price.set(i, fullCatalog[j].getPrice());
+//                i = i + 1;
+//            }            
+//            else {j = j + 1;}            
+//        }
         // pass in price which contains number of items due to containing the prices for each ID
-        calculateTotal(price);
+        //calculateTotal(price);
     }
     
-    private void calculateTotal(ArrayList<Double> price)
+    private void calculateTotal(Item[] categoryList, ArrayList<String> IDs)
     {
-        int numOfItems = price.size();
+        double subtotal = 0.0;
+        double tax = 0.0;
+        double finTotal = 0.0;
+        int j = 0;
+        while (j < IDs.size())
+        {
+            if (Integer.parseInt(IDs.get(j)) == categoryList[j].getId())
+            {
+                subtotal += categoryList[j].getPrice();                
+            }
+            j++;
+        }
+        
+        tax = (0.0825 * subtotal);
+        finTotal = (tax + subtotal);
+        
+        System.out.println("--------------------------------");
+        System.out.print("Subtotal:        $");
+        System.out.print(subtotal);
+        System.out.print("\nTax (8.25%):     $");
+        System.out.print(tax);
+        System.out.print("\nTOTAL:           $");
+        System.out.print(finTotal);
+        System.out.println("\n--------------------------------");
         
     }
     
@@ -254,17 +282,25 @@ public class itemManage
         
     }
     
-    public void cart(Item[] categoryList, ArrayList<String> IDs)
+    public void displayCart(Item[] categoryList, ArrayList<String> IDs, ArrayList<String> Q)
     {
         System.out.println("--------------------------------");
         System.out.println("Your Current Cart for Checkout");
-        System.out.println("ID   " + "Amnt   " + "Price   " + "Name");
-        for (int i = 0; i < 5; i++)
+        System.out.println("Items: ");
+        int i = 0;
+        while (i < IDs.size())
         {
-            if (categoryList
+            //if ArrayList.get(i) == null, fill that position up by doing this...
+            if (Integer.parseInt(IDs.get(i)) == categoryList[i].getId())
+            {
+                categoryList[i].setQuantity(Integer.parseInt(Q.get(i)));
+                categoryList[i].setPrice(Integer.parseInt(Q.get(i)) * categoryList[i].getPrice());
+                //don't display cart, just add values to the cart, although it would be better to reorganize this to only display stuff from ArrayList currentCart
+                //categoryList[i].displayCart();
+            }
+            i++;
         }
         
-        
-        
+        calculateTotal(categoryList, IDs);
     }
 }
