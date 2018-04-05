@@ -1,0 +1,35 @@
+furn,1,8,182.99,Arm Chair
+furn,2,2,116.99,Coffee Table
+furn,3,5,61.49,Nightstand
+furn,4,1,462.79,Platform Bed
+furn,5,2,797.99,Canopy Bed
+rugs,6,24,83.99,Round Rug
+rugs,7,6,207.49,Contemporary Rug
+rugs,8,18,159.77,Vintage Rug
+rugs,9,14,183.69,Custom 5x8-6x9 Rug
+rugs,10,7,107.64,Custom 7x9-10x14 Rug
+decor,11,8,117.99,Table Lamp
+decor,12,5,149.00,Ceiling Fan
+decor,10,3,349.99,Fireplace
+decor,14,13,17.99,Curtains
+decor,15,6,20.49,Bookends
+bedBath,16,5,38.49,Queen Size Bed-Set
+bedBath,17,5,38.49,King Size Bed-Set
+bedBath,18,8,34.99,Sheets & Pillowcases
+bedBath,19,15,17.69,Cotton Towels
+bedBath,20,6,66.98,Bathroom Accessory Set
+homeImprove,21,7,35.49,Heater
+homeImprove,22,2,239.97,Air Conditioner
+homeImprove,23,17,52.99,Trashcan
+homeImprove,24,2,1196.99,Washer & Dryer Set
+homeImprove,25,9,80.49,Floor Tile Set
+kitch,26,10,99.99,Toaster
+kitch,27,2,384.66,Dishwasher
+kitch,28,1,1623.99,Refrigerator
+kitch,29,5,121.99,Kitchen Storage
+kitch,30,8,262.99,Microwave
+outd,31,3,123.99,Swimming Pool
+outd,32,4,148.99,Gas Grill
+outd,33,1,1048.49,Patio Table Set
+outd,34,5,168.49,Lawn Mower
+outd,35,1,1499.99,Backyard Playfort

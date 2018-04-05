@@ -1,0 +1,13 @@
+To log in, use the following accounts:
+
+--Standard Account--
+username: default
+password: password
+
+--uClub Member Account-- this one was for our functionality testing
+username: member
+password: password
+
+--Admin Account-- this one can access history logs
+username: admin
+password: admin
